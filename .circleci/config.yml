@@ -1,10 +1,19 @@
 version: 2
 jobs:
   build:
-    docker:
-      - image: circleci/node:10 
+    docker: #执行容器
+      - image: circleci/node:10 #依赖环境
+    branchs: #分支
+      - master
     # Steps are a list of commands to run inside the docker container above.
     steps:
-      # - checkout # this pulls pulls code down from GitHub
-      - run: echo "A first hello test"
-      - run: npm -v
+      - add_ssh_key: # 设置sshkey
+        fingerprints:
+        - 'bb:05:3c:d2:4e:cd:07:9d:09:ef:37:aa:0d:4d:d0:af'
+    checkout # 从githun拉去代码
+      - run: 
+        name: Install
+        command: yarn install
+      - run:
+        name: Build
+        command: yarn build
