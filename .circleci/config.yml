@@ -1,0 +1,18 @@
+version: 2
+ jobs: # we now have jobs, so that a workflow can coordinate them!
+   test: # This is our first job.
+     docker: # it uses the docker executor
+       - image: circleci/node:10 
+     # Steps are a list of commands to run inside the docker container above.
+     steps:
+      # - checkout # this pulls pulls code down from GitHub
+       - run: echo "A first hello test" # This prints "A first hello" to stdout.
+       - run: npm -v # a command telling the job to "sleep" for 25 seconds.
+   install: # This is our second job.
+     docker: # it uses the docker executor
+       - image: circleci/node:12 
+     # Steps are a list of commands to run inside the docker container above.
+     steps:
+      # - checkout # this pulls pulls code down from GitHub
+       - run: echo "A first build" # This prints "A first hello" to stdout.
+       - run: npm -v # a command telling the job to "sleep" for 25 seconds.
