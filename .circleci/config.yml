@@ -1,18 +1,10 @@
 version: 2
 jobs:
-  test:
+  build:
     docker:
       - image: circleci/node:10 
     # Steps are a list of commands to run inside the docker container above.
     steps:
       # - checkout # this pulls pulls code down from GitHub
       - run: echo "A first hello test"
-      - run: npm -v
-  install:
-    docker:
-      - image: circleci/node:12 
-    # Steps are a list of commands to run inside the docker container above.
-    steps:
-      # - checkout # this pulls pulls code down from GitHub
-      - run: echo "A first build"
       - run: npm -v
