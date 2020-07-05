@@ -27,5 +27,8 @@ jobs:
           name: Build
           command: yarn build
       - run:
+          name: shell auth
+          command: chomd +x scripts/deploy.sh
+      - run:
           name: Deploy
-          command: yarn deploy
+          command: ./scripts/deploy.sh

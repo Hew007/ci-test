@@ -27,15 +27,15 @@ echo 'email is: '$GH_EMAIL
 echo 'name is: '$GH_NAME
 echo 'sitesource is: '$STATIC_SOURCE
 
-# 切换git-pages分支
-# 验证git 是否存在git-pages分支
-if git rev-parse --verify origin/git-pages >/dev/null 2>&1; then
+# 切换gh-pages分支
+# 验证git 是否存在gh-pages分支
+if git rev-parse --verify origin/gh-pages >/dev/null 2>&1; then
   # 检出此分支
-  git checkout git-pages
+  git checkout gh-pages
   # 删除掉旧的文件内容
   git rm -rf .
 else
-  git checkout --orphan git-pages
+  git checkout --orphan gh-pages
 fi
 
 # 把构建好的文件目录给拷贝进来
@@ -48,7 +48,7 @@ git add -A
 # 添加一条提交内容
 git commit --allow-empty -m "Deploy to GitHub pages [ci skip]"
 # 推送文件
-git push --force --quiet origin git-pages
+git push --force --quiet origin gh-pages
 # 资源回收，删除临时分支与目录
 cd ..
 rm -rf git-pages-rp
