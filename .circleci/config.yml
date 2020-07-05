@@ -12,9 +12,20 @@ jobs:
           fingerprints:
             - 'bb:05:3c:d2:4e:cd:07:9d:09:ef:37:aa:0d:4d:d0:af'
       - checkout # 从githun拉去代码
+      # 使用缓存
+      - restore_cache:
+          key: node-dependens
       - run: 
           name: Install
           command: yarn install
+      # 设置缓存
+      - save_cache:
+          key: node-dependens
+          paths:
+            - node_modules
       - run:
           name: Build
           command: yarn build
+      - run:
+          name: Deploy
+          command: yarn deploy
